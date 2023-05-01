@@ -21,7 +21,7 @@ services:
       - "/var/lib/docker/containers/:/var/lib/docker/containers/"
       - "{{ config_dir }}:/etc/pterodactyl/"
       - "{{ data_dir }}/var:/var/lib/pterodactyl/"
-      - "{{ data_dir }}/log:/var/log/pterodactyl/"
+      - "{{ data_dir }}/logs:/var/log/pterodactyl/"
       - "{{ data_dir }}/temp:/tmp/pterodactyl/"
     deploy:
       labels:
