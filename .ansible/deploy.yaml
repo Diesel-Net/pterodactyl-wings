@@ -13,6 +13,11 @@
         name: application
         tasks_from: make_config_dir
 
+    - name: Render Node's config.yml
+      file:
+        contents: {{ config_file }}
+        dest: '{{ config_dir }}/config.yml'
+
     # - file:
     #     path: '{{ data_dir }}'
     #     owner: '472'
