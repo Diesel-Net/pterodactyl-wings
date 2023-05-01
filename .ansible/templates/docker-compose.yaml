@@ -6,10 +6,7 @@ services:
     networks:
       - {{ traefik_network }}
     ports:
-      #- "8080:8080"
-      - "2022:2022"
-      #- "443:443"
-    #tty: true
+      - 2022:2022
     environment:
       TZ: "{{ timezone }}"
       WINGS_UID: {{ wings_uid }}
@@ -26,7 +23,7 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.http.services.{{ repository }}.loadbalancer.server.port=80
+        - traefik.http.services.{{ repository }}.loadbalancer.server.port=443
         - traefik.http.routers.{{ repository }}.rule=Host(`{{ inventory_hostname }}`)
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
         - traefik.http.routers.{{ repository }}.service={{ repository }}
