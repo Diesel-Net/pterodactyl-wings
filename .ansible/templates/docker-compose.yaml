@@ -5,6 +5,7 @@ services:
     image: ghcr.io/pterodactyl/wings:v1.11.5
     networks:
       - {{ traefik_network }}
+      - wings
     ports:
       - 2022:2022
     environment:
@@ -31,3 +32,11 @@ services:
 networks:
   {{ traefik_network }}:
     external: true
+  wings:
+    name: wings
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.21.0.0/16"
+    driver_opts:
+      com.docker.network.bridge.name: wings
