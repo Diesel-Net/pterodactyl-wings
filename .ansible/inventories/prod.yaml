@@ -3,16 +3,13 @@ all:
 
     swarm_manager:
       hosts:
-        pterodactyl.diesel.net:
+        wing1.pterodactyl.diesel.net:
 
   vars:
-
-    host: wings1.pterodactyl.diesel.net
 
     timezone: America/Los_Angeles
     wings_uid: 1001
     wings_gid: 1001
-
 
     mysql_password: !vault |
       $ANSIBLE_VAULT;1.1;AES256
