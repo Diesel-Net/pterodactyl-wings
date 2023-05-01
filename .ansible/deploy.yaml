@@ -15,7 +15,7 @@
 
     - name: Render Node's config.yml
       file:
-        contents: '{{ config_file }}'
+        content: '{{ config_file }}'
         dest: '{{ config_dir }}/config.yml'
 
     # - file:
