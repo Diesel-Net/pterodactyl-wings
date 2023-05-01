@@ -1,0 +1,26 @@
+kind: pipeline
+type: docker
+name: Deploy Pterodactyl Wings
+
+concurrency:
+  limit: 1
+
+steps:
+  - name: deploy
+    image: docker.nexus.diesel.net/drone-ansible:7.2.0
+    settings:
+      inventory: .ansible/inventories/prod.yaml
+      galaxy: .ansible/roles/requirements.yaml
+      playbook: .ansible/deploy.yaml
+      private_key:
+        from_secret: automation_id_rsa
+      vault_password:
+        from_secret: ansible_vault_password
+trigger:
+  branch:
+    #- development
+    - stable
+  event:
+    - push
+
+...
