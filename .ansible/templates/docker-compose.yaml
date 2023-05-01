@@ -9,6 +9,7 @@ services:
     ports:
       - 2022:2022
     environment:
+      GODEBUG: netdns=1
       TZ: "{{ timezone }}"
       WINGS_UID: {{ wings_uid }}
       WINGS_GID: {{ wings_gid }}
