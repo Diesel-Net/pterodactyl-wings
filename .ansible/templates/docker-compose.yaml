@@ -34,7 +34,7 @@ networks:
     external: true
   wings:
     name: wings
-    driver: bridge
+    driver: overlay
     ipam:
       config:
         - subnet: "172.21.0.0/16"
