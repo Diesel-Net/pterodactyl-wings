@@ -14,7 +14,7 @@
         tasks_from: make_config_dir
 
     - name: Render Node's config.yml
-      file:
+      copy:
         content: '{{ config_file }}'
         dest: '{{ config_dir }}/config.yml'
 
