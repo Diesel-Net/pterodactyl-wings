@@ -37,4 +37,3 @@ networks:
     ipam:
       config:
         - subnet: 10.0.200.0/24
-        - gateway: 10.0.200.1
