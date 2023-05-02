@@ -5,8 +5,7 @@ services:
     image: ghcr.io/pterodactyl/wings:v1.11.5
     networks:
       - {{ traefik_network }}
-      - wings0
-      - pterodactyl0
+      #- wings
     ports:
       - 2022:2022
     environment:
@@ -34,11 +33,7 @@ services:
 networks:
   {{ traefik_network }}:
     external: true
-  wings0:
-    ipam:
-      config:
-        - subnet: 10.0.200.0/24
-  pterodactyl0:
-    ipam:
-      config:
-        - subnet: 10.0.100.0/24
+  # wings:
+  #   ipam:
+  #     config:
+  #       - subnet: 10.0.200.0/24
