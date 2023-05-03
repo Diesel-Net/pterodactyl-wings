@@ -67,7 +67,7 @@
           -o com.docker.network.bridge.enable_icc=true
           -o com.docker.network.bridge.name=pterodactyl_nw
           -o com.docker.network.bridge.enable_ip_masquerade=true
-          pterodactyl_nw
+        docker_network: pterodactyl_nw
 
     - include_role:
         name: docker
