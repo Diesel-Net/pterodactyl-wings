@@ -16,6 +16,30 @@
         content: '{{ config }}'
         dest: '{{ config_dir }}/config.yml'
 
+    - name: Ensure directories exist
+      file:
+        path: /var/lib/pterodactyl/
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
+    - name: Ensure directories exist
+      file:
+        path: /var/log/pterodactyl/
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
+    - name: Ensure directories exist
+      file:
+        path: /tmp/pterodactyl
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
     # - include_role:
     #     name: application
     #     tasks_from: make_data_dir
