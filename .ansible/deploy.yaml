@@ -5,9 +5,7 @@
   
   tasks:
 
-    - include_role:
-        name: application
-        tasks_from: make_data_dir
+    
 
     - include_role:
         name: application
@@ -18,18 +16,22 @@
         content: '{{ config }}'
         dest: '{{ config_dir }}/config.yml'
 
-    - name: make data subdirs
-      file:
-        path: '{{ data_dir }}/{{ item }}'
-        state: directory
-        owner: 'automation'
-        group: 'automation'
-        mode: u=rwx,g=rx
-      become: yes
-      loop:
-        - var
-        - logs
-        - temp
+    # - include_role:
+    #     name: application
+    #     tasks_from: make_data_dir
+
+    # - name: make data subdirs
+    #   file:
+    #     path: '{{ data_dir }}/{{ item }}'
+    #     state: directory
+    #     owner: 'automation'
+    #     group: 'automation'
+    #     mode: u=rwx,g=rx
+    #   become: yes
+    #   loop:
+    #     - var
+    #     - logs
+    #     - temp
 
     - include_role:
         name: docker
