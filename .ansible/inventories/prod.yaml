@@ -4,12 +4,12 @@ all:
     swarm_manager:
       hosts:
         wing1.pterodactyl.diesel.net:
-          node_name: wing1
-          config_file: |
+          node: wing1
+          config: |
             debug: false
-            uuid: 98ba9726-165e-4f3a-9bf2-0f891bd65345
-            token_id: A5gpspmsAUBCGvRn
-            token: Xri4UocSfrnfDNvldLOscuPGtDK965rjpfMuO1s6wEDmgJwYzilb8fcjuRYXmZ4n
+            uuid: 9ac1e619-c41d-479c-a6bb-ce90cef2a6fa
+            token_id: 3NuCoqqQX2rbFfZV
+            token: YVbkrOjFmChjuFYf5Fxch5KGQgS7zhWdL2iLkv2FkJWY6RjFFOWgYh4GFEzjwwOw
             api:
               host: 0.0.0.0
               port: 443
@@ -24,6 +24,14 @@ all:
                 bind_port: 2022
             allowed_mounts: []
             remote: 'https://pterodactyl.diesel.net'
+            
+            # custom network config for docker swarm
+            docker:
+              network:
+                name: docker_gwbridge
+
+
+
 
   vars:
 

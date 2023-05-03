@@ -15,24 +15,31 @@
 
     - name: Render Node's config.yml
       copy:
-        content: '{{ config_file }}'
+        content: '{{ config }}'
         dest: '{{ config_dir }}/config.yml'
 
-    # - file:
-    #     path: '{{ data_dir }}'
-    #     owner: '472'
-    #     group: '0'
-    #     mode: u=rwx,g=rx
-    #   become: yes
+    - file:
+        path: '{{ data_dir }}'
+        owner: '1001'
+        group: '1001'
+        mode: u=rwx,g=rx
+      become: yes
+
+    - file:
+        path: '{{ config_dir }}'
+        owner: '1001'
+        group: '1001'
+        mode: u=rwx,g=rx
+      become: yes
 
     - name: make data subdirs
       file:
         path: '{{ data_dir }}/{{ item }}'
         state: directory
-        #owner: '472'
-        #group: '0'
-        #mode: u=rwx,g=rx
-      #become: yes
+        owner: '1001'
+        group: '1001'
+        mode: u=rwx,g=rx
+      become: yes
       loop:
         - var
         - logs
