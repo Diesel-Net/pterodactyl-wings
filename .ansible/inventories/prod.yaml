@@ -29,8 +29,8 @@ all:
             docker:
               network:
                 name: pterodactyl_nw
-                interface:
-                  V4:
+                interfaces:
+                  v4:
                     subnet: 'default:"172.18.0.0/16"'
                     gateway: 'default:"10.0.200.1"'
 
