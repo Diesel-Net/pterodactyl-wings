@@ -26,9 +26,9 @@ all:
             remote: 'https://pterodactyl.diesel.net'
             
             # custom network config for docker swarm
-            docker:
-              network:
-                name: docker_gwbridge
+            #docker:
+              #network:
+                #name: docker_gwbridge
 
 
 
