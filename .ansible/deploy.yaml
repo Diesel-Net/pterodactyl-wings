@@ -48,8 +48,7 @@
     - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} for the game servers
       ufw:
         rule: allow
-        from_port: '{{ game_server_port_start }}'
-        to_port: '{{ game_server_port_end }}'
+        from: '{{ game_server_port_start }}:{{ game_server_port_end }}'
         proto: any
       become: yes
 
