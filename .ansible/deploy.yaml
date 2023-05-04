@@ -40,9 +40,9 @@
         group: 'automation'
       become: yes
 
-    # - include_role:
-    #     name: application
-    #     tasks_from: make_data_dir
+    - include_role:
+        name: application
+        tasks_from: make_data_dir
 
     # - name: make data subdirs
     #   file:
