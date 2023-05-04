@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  {{ node }}:
+    image: ghcr.io/pterodactyl/wings:v1.11.5
+    networks:
+      - {{ traefik_network }}
+    ports:
+      - {{ sftp_port }}:{{ sftp_port }}
+    environment:
+      TZ: "{{ timezone }}"
+      WINGS_UID: {{ wings_uid }}
+      WINGS_GID: {{ wings_gid }}
+      WINGS_USERNAME: pterodactyl
+    volumes:
+      - "/etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/containers/:/var/lib/docker/containers/"
+      - "{{ config_dir }}:/etc/pterodactyl/"
+      - "/var/lib/pterodactyl/:/var/lib/pterodactyl/"
+      - "/var/log/pterodactyl/:/var/log/pterodactyl/"
+      - "/tmp/pterodactyl/:/tmp/pterodactyl/"
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.services.{{ repository }}.loadbalancer.server.port=443
+        - traefik.http.routers.{{ repository }}.rule=Host(`{{ inventory_hostname }}`)
+        - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
+        - traefik.http.routers.{{ repository }}.service={{ repository }}
+
+networks:
+  {{ traefik_network }}:
+    external: true

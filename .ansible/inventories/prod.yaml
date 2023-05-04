@@ -1,0 +1,56 @@
+all:
+  children:
+
+    swarm_manager:
+      hosts:
+        wing1.pterodactyl.diesel.net:
+          node: wing1
+          sftp_port: 2022
+          game_server_port_start: 27000
+          game_server_port_end: 27099
+          
+          # just copy/paste what the panel spits out for you:
+          config: |
+            debug: false
+            uuid: 9ac1e619-c41d-479c-a6bb-ce90cef2a6fa
+            token_id: 3NuCoqqQX2rbFfZV
+            token: YVbkrOjFmChjuFYf5Fxch5KGQgS7zhWdL2iLkv2FkJWY6RjFFOWgYh4GFEzjwwOw
+            api:
+              host: 0.0.0.0
+              port: 443
+              ssl:
+                enabled: false
+                cert: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/fullchain.pem
+                key: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/privkey.pem
+              upload_limit: 100
+            system:
+              data: /var/lib/pterodactyl/volumes
+              sftp:
+                bind_port: 2022
+            allowed_mounts: []
+            remote: 'https://pterodactyl.diesel.net'
+
+  vars:
+
+    timezone: America/Los_Angeles
+    wings_uid: 1003 # automation
+    wings_gid: 1004 # automation
+
+    mysql_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      37346265616238333038363631653362303765343863323430313534313730626161633538333237
+      3639383466373933373236313439616538386339633363660a316661336366356633376566333830
+      36623535373032326234666563646566653233623435363661666436303738363032353963316339
+      3638323533656532380a656233346665393134616530663563323366393435336362333431373664
+      35316435383561653066646139396362373638353735366430636139643162643863
+
+    mysql_root_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      66613566373338643566333232613136393763356531366163383666383462356665653834613534
+      6264346232353866623732353035643235373936663961610a303165343765343239313232633136
+      35663234383263303339326232356432396565613036336631323461356161666637623164343930
+      3238363230633764630a313964343431643261333163663264663737323639656465316331623432
+      3932
+    
+    ansible_user: automation
+    ansible_python_interpreter: /usr/bin/python3

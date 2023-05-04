@@ -1,0 +1,76 @@
+- hosts: swarm_manager
+  roles:
+    - application
+    - traefik
+  
+  tasks:
+
+    - include_role:
+        name: application
+        tasks_from: make_config_dir
+
+    - name: Render Node's config.yml
+      copy:
+        content: '{{ config }}'
+        dest: '{{ config_dir }}/config.yml'
+
+    - name: Ensure directories exist
+      file:
+        path: /var/lib/pterodactyl/
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
+    - name: Ensure directories exist
+      file:
+        path: /var/log/pterodactyl/
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
+    - name: Ensure directories exist
+      file:
+        path: /tmp/pterodactyl
+        state: directory
+        owner: 'automation'
+        group: 'automation'
+      become: yes
+
+    - name: Allow port {{ sftp_port }} (SFTP) for the wings agent
+      ufw:
+        rule: allow
+        port: '{{ sftp_port }}'
+        proto: any
+      become: yes
+
+    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (TCP) for the game servers
+      ufw:
+        rule: allow
+        port: 27000:27099
+        proto: tcp
+      become: yes
+
+    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (UDP) for the game servers
+      ufw:
+        rule: allow
+        port: 27000:27099
+        proto: udp
+      become: yes
+
+    - name: Reload Firewall and enable at boot
+      ufw:
+        state: enabled
+        policy: deny
+      become: yes
+
+    - include_role:
+        name: docker
+        tasks_from: network_create
+      vars:
+        docker_network: pterodactyl_nw
+
+    - include_role:
+        name: docker
+        tasks_from: stack_deploy
