@@ -57,17 +57,17 @@
     #     - logs
     #     - temp
 
-    # - include_role:
-    #     name: docker
-    #     tasks_from: network_create
-    #   vars:
-    #     options: >-
-    #       --subnet=10.0.200.0/24 
-    #       --gateway=10.0.200.1
-    #       # -o com.docker.network.bridge.enable_icc=false
-    #       # -o com.docker.network.bridge.name=pterodactyl_nw
-    #       # -o com.docker.network.bridge.enable_ip_masquerade=true
-    #     docker_network: pterodactyl_nw
+    - include_role:
+        name: docker
+        tasks_from: network_create
+      vars:
+        # options: >-
+        #   #--subnet=10.0.200.0/24
+        #   #--gateway=10.0.200.1
+        #   # -o com.docker.network.bridge.enable_icc=false
+        #   # -o com.docker.network.bridge.name=pterodactyl_nw
+        #   # -o com.docker.network.bridge.enable_ip_masquerade=true
+        docker_network: pterodactyl_nw
 
     - include_role:
         name: docker
