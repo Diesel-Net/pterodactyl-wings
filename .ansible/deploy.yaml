@@ -45,11 +45,18 @@
         proto: any
       become: yes
 
-    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} for the game servers
+    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (TCP) for the game servers
       ufw:
         rule: allow
         port: 27000:27099
-        proto: any
+        proto: tcp
+      become: yes
+
+        - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (UDP) for the game servers
+      ufw:
+        rule: allow
+        port: 27000:27099
+        proto: udp
       become: yes
 
     - name: Reload Firewall and enable at boot
