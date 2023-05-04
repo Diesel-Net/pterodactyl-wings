@@ -21,7 +21,7 @@ services:
       - "{{ config_dir }}:/etc/pterodactyl/"
       - "/var/lib/pterodactyl/:/var/lib/pterodactyl/"
       - "/var/log/pterodactyl/:/var/log/pterodactyl/"
-      - "{{ data_dir }}:/tmp/pterodactyl/"
+      - "/tmp/pterodactyl/:/tmp/pterodactyl/"
     deploy:
       labels:
         - traefik.enable=true
