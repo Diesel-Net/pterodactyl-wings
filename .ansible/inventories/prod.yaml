@@ -26,13 +26,13 @@ all:
             remote: 'https://pterodactyl.diesel.net'
             
             # custom network config for docker swarm
-            # docker:
-            #   network:
-            #     name: pterodactyl_nw
-            #     interfaces:
-            #       v4:
-            #         subnet: '10.0.200.0/24'
-            #         gateway: '10.0.200.1'
+            docker:
+              network:
+                name: pterodactyl_nw
+                interfaces:
+                  v4:
+                    subnet: '10.0.200.0/24'
+                    gateway: '10.0.200.1'
 
 
   vars:
