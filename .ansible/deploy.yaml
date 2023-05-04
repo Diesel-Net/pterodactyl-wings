@@ -62,11 +62,8 @@
         tasks_from: network_create
       vars:
         options: >-
-          --subnet=10.200.0.0/16 
-          --gateway=10.200.0.1
-          -o com.docker.network.bridge.enable_icc=true
-          -o com.docker.network.bridge.name=pterodactyl_nw
-          -o com.docker.network.bridge.enable_ip_masquerade=true
+          --subnet=10.0.200.0/24 
+          --gateway=10.0.200.1
         docker_network: pterodactyl_nw
 
     - include_role:
