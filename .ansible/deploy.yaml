@@ -61,7 +61,7 @@
         name: docker
         tasks_from: network_create
       vars:
-        options: >
+        options: >-
           --subnet=10.200.0.0/16 
           --gateway=10.200.0.1
           -o com.docker.network.bridge.enable_icc=true
