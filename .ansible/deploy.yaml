@@ -38,6 +38,13 @@
         group: 'automation'
       become: yes
 
+    - name: Ensure /tmp/pterodactyl exists after reboot
+      copy:
+        content: |
+          d /tmp/pterodactyl 0755 automation automation
+        dest: /usr/lib/tmpfiles.d/pterodactyl.conf
+      become: yes
+
     - name: Allow port {{ sftp_port }} (SFTP) for the wings agent
       ufw:
         rule: allow
