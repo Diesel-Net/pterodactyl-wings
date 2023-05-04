@@ -7,7 +7,7 @@ services:
       - {{ traefik_network }}
       #- pterodactyl_nw
     ports:
-      - 2022:2022
+      - {{ sftp_port }}:{{ sftp_port }}
     environment:
       #GODEBUG: netdns=go+2
       TZ: "{{ timezone }}"

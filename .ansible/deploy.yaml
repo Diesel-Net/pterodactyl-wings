@@ -38,23 +38,18 @@
         group: 'automation'
       become: yes
 
-    # - name: make data subdirs
-    #   file:
-    #     path: '{{ data_dir }}/{{ item }}'
-    #     state: directory
-    #     owner: 'automation'
-    #     group: 'automation'
-    #     mode: u=rwx,g=rx
-    #   become: yes
-    #   loop:
-    #     - var
-    #     - logs
-    #     - temp
-
-    - name: Allow port 2022 (SFTP)
+    - name: Allow port {{ sftp_port }} (SFTP) for the wings agent
       ufw:
         rule: allow
-        port: '2022'
+        port: '{{ sftp_port }}'
+        proto: any
+      become: yes
+
+    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} for the game servers
+      ufw:
+        rule: allow
+        from_port: '{{ game_server_port_start }}'
+        to_port: '{{ game_server_port_end }}'
         proto: any
       become: yes
 
@@ -68,12 +63,6 @@
         name: docker
         tasks_from: network_create
       vars:
-        # options: >-
-        #   #--subnet=10.0.200.0/24
-        #   #--gateway=10.0.200.1
-        #   # -o com.docker.network.bridge.enable_icc=false
-        #   # -o com.docker.network.bridge.name=pterodactyl_nw
-        #   # -o com.docker.network.bridge.enable_ip_masquerade=true
         docker_network: pterodactyl_nw
 
     - include_role:

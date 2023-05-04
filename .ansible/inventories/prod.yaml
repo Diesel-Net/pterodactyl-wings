@@ -5,7 +5,10 @@ all:
       hosts:
         wing1.pterodactyl.diesel.net:
           node: wing1
-
+          sftp_port: 2022
+          game_server_port_start: 27000
+          game_server_port_end: 27099
+          
           # just copy/paste what the panel spits out for you:
           config: |
             debug: false
