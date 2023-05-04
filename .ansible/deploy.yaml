@@ -52,7 +52,7 @@
         proto: tcp
       become: yes
 
-        - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (UDP) for the game servers
+    - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (UDP) for the game servers
       ufw:
         rule: allow
         port: 27000:27099
