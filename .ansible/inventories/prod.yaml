@@ -5,6 +5,8 @@ all:
       hosts:
         wing1.pterodactyl.diesel.net:
           node: wing1
+
+          # just copy/paste what the panel spits out for you:
           config: |
             debug: false
             uuid: 9ac1e619-c41d-479c-a6bb-ce90cef2a6fa
@@ -24,22 +26,12 @@ all:
                 bind_port: 2022
             allowed_mounts: []
             remote: 'https://pterodactyl.diesel.net'
-            
-            # custom network config for docker swarm
-            # docker:
-            #   network:
-            #     name: pterodactyl_nw
-            #     interfaces:
-            #       v4:
-            #         subnet: '10.0.200.0/24'
-            #         gateway: '10.0.200.1'
-
 
   vars:
 
     timezone: America/Los_Angeles
-    wings_uid: 1003
-    wings_gid: 1004
+    wings_uid: 1003 # automation
+    wings_gid: 1004 # automation
 
     mysql_password: !vault |
       $ANSIBLE_VAULT;1.1;AES256
