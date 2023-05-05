@@ -22,7 +22,7 @@ all:
                 enabled: false
                 cert: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/fullchain.pem
                 key: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/privkey.pem
-              upload_limit: 100
+              upload_limit: 1024
             system:
               data: /var/lib/pterodactyl/volumes
               sftp:
