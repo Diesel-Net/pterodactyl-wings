@@ -3,8 +3,9 @@ all:
 
     swarm_manager:
       hosts:
+
+        # for each wing copy this block and change values as appropriate
         wing1.pterodactyl.diesel.net:
-          node: wing1
           sftp_port: 2022
           game_server_port_start: 27000
           game_server_port_end: 27099
@@ -22,7 +23,7 @@ all:
                 enabled: false
                 cert: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/fullchain.pem
                 key: /etc/letsencrypt/live/wing1.pterodactyl.diesel.net/privkey.pem
-              upload_limit: 100
+              upload_limit: 1024
             system:
               data: /var/lib/pterodactyl/volumes
               sftp:

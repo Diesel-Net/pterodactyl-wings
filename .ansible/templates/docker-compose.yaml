@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  {{ node }}:
+  {{ inventory_hostname | split('.') | first }}:
     image: ghcr.io/pterodactyl/wings:v1.11.5
     networks:
       - {{ traefik_network }}
@@ -17,8 +17,15 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/var/lib/docker/containers/:/var/lib/docker/containers/"
       - "{{ config_dir }}:/etc/pterodactyl/"
+
+      # the "src" directories (left side) of the volumes below MUST be exactly these paths.. 
+      # perhaps you can change this in the node's `config.yml` ?
+      # Not sure why it would be implemented this way
       - "/var/lib/pterodactyl/:/var/lib/pterodactyl/"
       - "/var/log/pterodactyl/:/var/log/pterodactyl/"
+
+      # This directory is required for the stack to start yet Ubuntu clears it with every reboot..
+      # see `.ansible/deploy.yaml#29`
       - "/tmp/pterodactyl/:/tmp/pterodactyl/"
     deploy:
       labels:

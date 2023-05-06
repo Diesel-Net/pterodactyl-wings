@@ -16,27 +16,15 @@
 
     - name: Ensure directories exist
       file:
-        path: /var/lib/pterodactyl/
+        path: '{{ item }}'
         state: directory
         owner: 'automation'
         group: 'automation'
       become: yes
-
-    - name: Ensure directories exist
-      file:
-        path: /var/log/pterodactyl/
-        state: directory
-        owner: 'automation'
-        group: 'automation'
-      become: yes
-
-    - name: Ensure directories exist
-      file:
-        path: /tmp/pterodactyl
-        state: directory
-        owner: 'automation'
-        group: 'automation'
-      become: yes
+      loop:
+        - /var/lib/pterodactyl
+        - /var/log/pterodactyl
+        - /tmp/pterodactyl
 
     - name: Ensure /tmp/pterodactyl exists after reboot
       copy:
@@ -55,14 +43,14 @@
     - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (TCP) for the game servers
       ufw:
         rule: allow
-        port: 27000:27099
+        port: '{{ game_server_port_start }}:{{ game_server_port_end }}'
         proto: tcp
       become: yes
 
     - name: Allow ports {{ game_server_port_start }}-{{ game_server_port_end }} (UDP) for the game servers
       ufw:
         rule: allow
-        port: 27000:27099
+        port: '{{ game_server_port_start }}:{{ game_server_port_end }}'
         proto: udp
       become: yes
 
