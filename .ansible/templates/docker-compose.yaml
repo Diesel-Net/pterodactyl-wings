@@ -36,7 +36,7 @@ services:
         - traefik.http.routers.{{ repository }}.service={{ repository }}@docker
 
         - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowcredentials=true
-        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlist=*.diesel.net, *.kiwi-labs.net
+        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlist=pterodactyl.diesel.net, pterodactyl.kiwi-labs.net
         #- traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlistregex=foobar, foobar
 
         - traefik.http.routers.{{ repository }}.middlewares={{ repository }}-cors@docker
