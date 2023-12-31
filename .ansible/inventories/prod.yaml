@@ -32,7 +32,7 @@ all:
                 bind_port: 2022
             allowed_mounts: []
             remote: 'https://pterodactyl.kiwi-labs.net'
-            allowed_origins: ['*.diesel.net', '*.kiwi-labs.net']
+            allowed_origins: [\'*.diesel.net', '*.kiwi-labs.net']
 
   vars:
 
