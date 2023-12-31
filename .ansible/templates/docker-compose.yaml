@@ -43,8 +43,8 @@ services:
         - traefik.http.routers.diesel-{{ app_name }}.middlewares={{ app_name }}-cors@docker
 
         - traefik.http.routers.kiwi-{{ app_name }}.rule=Host(`{{ kiwi_host }}`)
-        - traefik.http.routers.kiwi-{{ app_name }}.middlewares={{ app_name }}-auth@docker
         - traefik.http.routers.kiwi-{{ app_name }}.tls.certresolver=cloudflare
+        - traefik.http.routers.kiwi-{{ app_name }}.middlewares={{ app_name }}-cors@docker
         - traefik.http.routers.kiwi-{{ app_name }}.tls.domains[0].main={{ '.'.join( kiwi_host.split('.')[1:] ) }}
         - traefik.http.routers.kiwi-{{ app_name }}.tls.domains[0].sans=*.{{ '.'.join( kiwi_host.split('.')[1:] ) }}
         - traefik.http.routers.kiwi-{{ app_name }}.service={{ app_name }}@docker
