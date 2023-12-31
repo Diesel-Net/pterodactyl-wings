@@ -4,9 +4,9 @@ all:
     swarm_manager:
       hosts:
 
-        wing1.pterodactyl.diesel.net:
-          diesel_host: '{{ inventory_hostname }}'
-          kiwi_host: wing1.pterodactyl.kiwi-labs.net
+        pterodactyl.diesel.net:
+          diesel_host: wings.diesel.net
+          kiwi_host: wings.kiwi-labs.net
           timezone: America/Los_Angeles
           wings_uid: 1003 # automation
           wings_gid: 1004 # automation
@@ -25,8 +25,8 @@ all:
               port: 443
               ssl:
                 enabled: false
-                cert: /etc/letsencrypt/live/wing1.pterodactyl.kiwi-labs.net/fullchain.pem
-                key: /etc/letsencrypt/live/wing1.pterodactyl.kiwi-labs.net/privkey.pem
+                cert: /etc/letsencrypt/live/wings.kiwi-labs.net/fullchain.pem
+                key: /etc/letsencrypt/live/wings.kiwi-labs.net/privkey.pem
               upload_limit: 1024
             system:
               data: /var/lib/pterodactyl/volumes
