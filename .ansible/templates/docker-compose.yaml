@@ -35,9 +35,11 @@ services:
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
         - traefik.http.routers.{{ repository }}.service={{ repository }}@docker
 
-        #- traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowcredentials=true
-        #- traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlist=https://pterodactyl.diesel.net, https://pterodactyl.kiwi-labs.net
-        #- traefik.http.routers.{{ repository }}.middlewares={{ repository }}-cors@docker
+        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowcredentials=true
+        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowheaders=*
+        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowmethods=*
+        - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlist=*
+        - traefik.http.routers.{{ repository }}.middlewares={{ repository }}-cors@docker
 
 networks:
   {{ traefik_network }}:
