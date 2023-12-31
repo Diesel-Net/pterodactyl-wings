@@ -37,7 +37,7 @@ services:
         - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolallowmethods=*
         - traefik.http.middlewares.{{ repository }}-cors.headers.accesscontrolalloworiginlist=*
 
-        - traefik.http.routers.{{ repository }}.rule=Host(`{{ inventory_hostname }}`)
+        - traefik.http.routers.{{ repository }}.rule=Host(`{{ inventory_hostname }}`, `wing1.pterodactyl.kiwi-labs.net`)
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
         - traefik.http.routers.{{ repository }}.service={{ repository }}@docker
         - traefik.http.routers.{{ repository }}.middlewares={{ repository }}-cors@docker
