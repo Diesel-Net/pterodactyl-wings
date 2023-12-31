@@ -31,7 +31,7 @@ all:
               sftp:
                 bind_port: 2022
             allowed_mounts: []
-            remote: 'https://pterodactyl.kiwi-labs.net'
+            remote: 'https://pterodactyl.diesel.net'
 
   vars:
 
